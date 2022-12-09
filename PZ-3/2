@@ -1,0 +1,50 @@
+#include <iostream>
+using namespace std;
+int main() {
+  char A;
+  cycle:
+  cout << "Enter number of student: ";
+  cin >> A;
+  switch(A){
+    case('1'):
+      cout << "1, Berbenets V.E" << endl;
+      break;
+    case('2'):
+      cout << "2, Student " << endl;
+      break;
+    case('3'):
+      cout << "3, Student " << endl;
+      break;
+      case('4'):
+      cout << "4, Student " << endl;
+      break;
+       case('5'):
+      cout << "5, Student " << endl;
+      break;
+       case('6'):
+      cout << "6, Student " << endl;
+      break;
+       case('7'):
+      cout << "7, Student " << endl;
+      break;
+       case('8'):
+      cout << "8, Student " << endl;
+      break;
+       case('9'):
+      cout << "9, Student " << endl;
+      break;
+      case('10'):
+      cout << "10, Student " << endl;
+      break;
+      case('11'):
+      cout << "11, Student " << endl;
+      break;
+      case('12'):
+      cout << "12, Student " << endl;
+      break;
+    default:
+      cout << "Enter correct model" << endl;
+  }
+  goto cycle;
+    return 0;
+}
