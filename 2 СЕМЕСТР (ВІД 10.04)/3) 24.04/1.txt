@@ -1,0 +1,78 @@
+#include <iostream>
+
+class FlightBooking {
+public:
+    FlightBooking(int id, int capacity, int reserved);
+    void printStatus();
+    bool reserveSeats(int number_of_seats);
+    bool cancelReservations(int number_of_seats);
+
+private:
+    int id;
+    int capacity;
+    int reserved;
+};
+
+FlightBooking::FlightBooking(int id, int capacity, int reserved)
+    : id(id), capacity(capacity), reserved(reserved) {
+    // Ensure reserved seats are within the limits
+    if (reserved < 0) {
+        this->reserved = 0;
+    } else if (reserved > static_cast<int>(capacity * 1.05)) {
+        this->reserved = static_cast<int>(capacity * 1.05);
+    }
+}
+
+void FlightBooking::printStatus() {
+    double percentage = static_cast<double>(reserved) / capacity * 100;
+    std::cout << "Flight " << id << " : " << reserved << "/" << capacity << " (" << percentage << "%) seats reserved" << std::endl;
+}
+
+bool FlightBooking::reserveSeats(int number_of_seats) {
+    if (reserved + number_of_seats > static_cast<int>(capacity * 1.05)) {
+        std::cout << "Cannot perform this operation" << std::endl;
+        return false;
+    }
+
+    reserved += number_of_seats;
+    return true;
+}
+
+bool FlightBooking::cancelReservations(int number_of_seats) {
+    if (reserved - number_of_seats < 0) {
+        std::cout << "Cannot perform this operation" << std::endl;
+        return false;
+    }
+
+    reserved -= number_of_seats;
+    return true;
+}
+
+int main() {
+    int reserved = 0, capacity = 0;
+    std::cout << "Provide flight capacity: ";
+    std::cin >> capacity;
+    std::cout << "Provide number of reserved seats: ";
+    std::cin >> reserved;
+
+    FlightBooking booking(1, capacity, reserved);
+
+    std::string command;
+    do {
+        booking.printStatus();
+        std::cout << "What would you like to do?: ";
+        std::cin >> command;
+
+        if (command == "add") {
+            int num;
+            std::cin >> num;
+            booking.reserveSeats(num);
+        } else if (command == "cancel") {
+            int num;
+            std::cin >> num;
+            booking.cancelReservations(num);
+        }
+    } while (command != "quit");
+
+    return 0;
+}
