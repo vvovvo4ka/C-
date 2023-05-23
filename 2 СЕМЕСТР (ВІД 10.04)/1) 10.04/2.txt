@@ -36,3 +36,4 @@ int main() {
     sq.print();
 
 return 0;
+}
