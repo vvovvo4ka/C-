@@ -34,8 +34,8 @@ double Fraction::toDouble() {
     return static_cast<double>(numerator) / denominator;
 }
 
-int main(void) {
-    int num, den;
+int main() {
+    int num = 0, den = 1;
     string input = "";
     getline(cin, input);
 
